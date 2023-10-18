@@ -66,24 +66,10 @@ export const QuestionForm = styled.form`
     color: red;
   }
 
-  button[type=submit] {
-    padding: 0.5rem 1.25rem;
-    border-radius: 8px;
-    width: 100%;
-    color: ${props => props.theme['primary']};
-    background: transparent;
-    border: 1px solid ${props => props.theme['primary']};
-
-    &:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-
-    &:not(:disabled):hover {
-      border: 1px solid transparent;
-      background: ${props => props.theme['primary']};
-      color: ${props => props.theme['on-primary']};
-    }
+  .buttons {
+    display: flex;
+    gap: 1.5rem;
+    align-self: flex-end;
   }
 `
 
@@ -96,4 +82,9 @@ export const CloseButton = styled(Dialog.Close)`
   line-height: 0;
   cursor: pointer;
   color: ${props => props.theme['gray-500']};
+  transition: all 0.2s;
+
+  &:hover {
+    color: ${props => props.theme['primary']};
+  }
 `;

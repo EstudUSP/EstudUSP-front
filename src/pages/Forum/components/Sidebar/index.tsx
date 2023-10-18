@@ -6,7 +6,7 @@ import { Subtitle } from '../../../../styles/global';
 import { CaretLeft, Info } from 'phosphor-react';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { SecondaryButton } from '../../../../components/SecondaryButton/styles';
+import { TerciaryButton } from '../../../../components/TerciaryButton/styles';
 // import { Avatar } from '../../../../components/Avatar'
 
 export function Sidebar () {
@@ -28,10 +28,10 @@ export function Sidebar () {
   return (
     <SidebarContainer>
       <Link to='/'>
-        <SecondaryButton variant={false} >
+        <TerciaryButton>
           <CaretLeft size={20} />
           Voltar
-        </SecondaryButton>
+        </TerciaryButton>
       </Link>
       {currentActiveSubject &&        
         <SidebarItem>

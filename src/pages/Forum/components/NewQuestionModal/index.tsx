@@ -8,6 +8,8 @@ import Upload from '../../../../components/Upload';
 import { X } from 'phosphor-react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { Button } from '../../../../components/Button/styles';
+import { SecondaryButton } from '../../../../components/SecondaryButton/styles';
 
 interface NewQuestionModalProps {
   setIsQuestionCardOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -47,7 +49,7 @@ export function NewQuestionModal({ setIsQuestionCardOpen }: NewQuestionModalProp
         <Dialog.Title>Nova pergunta</Dialog.Title>
 
         <CloseButton>
-          <X size={24} />
+          <X size={24} weight='bold' />
         </CloseButton>
 
         <QuestionForm onSubmit={handleSubmit(handleCreateNewQuestion)}>
@@ -73,7 +75,10 @@ export function NewQuestionModal({ setIsQuestionCardOpen }: NewQuestionModalProp
           <Upload />
           <FileList />
 
-          <button type='submit'>Publicar</button>
+          <div className='buttons'>
+            <SecondaryButton onClick={() => setIsQuestionCardOpen(false)} variant={false}>Cancelar</SecondaryButton>
+            <Button type='submit'>Publicar</Button>
+          </div>
         </QuestionForm>
         
       </Content>

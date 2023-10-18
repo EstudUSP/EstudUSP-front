@@ -28,7 +28,7 @@ function Upload() {
 
   const renderDragMessage = useCallback(() => {
     if (!isDragActive) {
-      return <UploadMessage>Adicione/arraste arquivos aqui <UploadSimple/></UploadMessage>;
+      return <UploadMessage>Adicione/arraste arquivos aqui (opcional) <UploadSimple size={24} weight="bold" /></UploadMessage>;
     }
 
     if (isDragReject) {

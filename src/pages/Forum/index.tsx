@@ -63,24 +63,24 @@ export function Forum() {
 
         <SearchForm />
 
-            {posts.length === 0 && !isLoading && <h6>Ainda não há perguntas nesta disciplina :(</h6>}
-            {posts.map(post => {
-              return (
-                <PostPreview 
-                  key={post.id} 
-                  post={post} 
-                  isCardOpen={post.id === openedPostId} 
-                  onOpenCard={() => setOpenedPostId(post.id)}
-                  onCloseCard={() => setOpenedPostId(-1)}
-                />
-              )
-            })}
-            
-            {isLoading &&
-              <Loading size={15}>
-                  <img src='/loading.svg' alt='EstudUSP - Loading' />
-              </Loading>
-            }
+          {posts.length === 0 && !isLoading && <h6>Ainda não há perguntas nesta disciplina :(</h6>}
+          {posts.map(post => {
+            return (
+              <PostPreview 
+                key={post.id} 
+                post={post} 
+                isCardOpen={post.id === openedPostId} 
+                onOpenCard={() => setOpenedPostId(post.id)}
+                onCloseCard={() => setOpenedPostId(-1)}
+              />
+            )
+          })}
+          
+          {isLoading &&
+            <Loading size={15}>
+                <img src='/loading.svg' alt='EstudUSP - Loading' />
+            </Loading>
+          }
           
         </CommentsProvider>
       </main>

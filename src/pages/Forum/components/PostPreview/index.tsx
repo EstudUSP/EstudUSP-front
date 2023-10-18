@@ -11,6 +11,7 @@ import { Subtitle } from '../../../../styles/global';
 import { useContextSelector } from 'use-context-selector';
 import { ThumbsUp } from 'phosphor-react';
 import { Post as PostType, PostsContext } from '../../../../contexts/PostsContext';
+import { TerciaryButton } from '../../../../components/TerciaryButton/styles';
 
 // interface Content {
 //   type: 'paragraph' | 'link';
@@ -83,10 +84,10 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard }: PostP
             <h6>{post.title}</h6>
             <Subtitle>{post.anonymous ? 'Anônimo' : post.username}</Subtitle>
             {!isCardOpen &&
-              <div className='downarrow' onClick={handleOpenCard}>
+              <TerciaryButton className='downarrow' onClick={handleOpenCard}>
                 <p>{post.repliesQuantity} resposta{post.repliesQuantity!= 1 ? 's' : ''}</p>
                 <div></div>
-              </div>
+              </TerciaryButton>
             }
           </div>
         </PostPreviewContent>
@@ -97,7 +98,7 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard }: PostP
           </time>
 
           <button onClick={handleLikePost} className='likeButton' >
-            <ThumbsUp size={20} /> {post.upvotes}
+            <ThumbsUp size={20} weight='bold' /> {post.upvotes}
           </button>
         </div>
       </div>
@@ -105,10 +106,10 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard }: PostP
       {isCardOpen &&
         <>
           <Comments key={post.id} post={post} comments={comments} />
-          <div className='uparrow' onClick={onCloseCard}>
+          <TerciaryButton className='uparrow' onClick={onCloseCard}>
             <p>Ocultar</p>
             <div></div>
-          </div>
+          </TerciaryButton>
         </>
       }
     </PostPreviewContainer>

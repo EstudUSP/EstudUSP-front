@@ -59,21 +59,8 @@ export const PostPreviewContainer = styled.article<PostPreviewContainerProps>`
   }
 
   .downarrow, .uparrow {
-    background: transparent;
-    border-radius: 8px;
     position: absolute;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    height: fit-content;
-    width: fit-content;
-    padding: 0.5rem 1rem;
     bottom: .5rem;
-    left: 43%;
-    border: 1px solid transparent;
-    transition: border 0.2s;
 
     p {
       color: ${props => props.theme['primary']};
@@ -83,12 +70,6 @@ export const PostPreviewContainer = styled.article<PostPreviewContainerProps>`
       height: 12px;
       width: 12px;
       transform: rotateY(0deg) rotate(45deg);
-    }
-
-    &:hover {
-      /* background: ${props => props.theme['surface-container-highest']}; */
-      border: 1px solid ${props => props.theme['primary']};
-      cursor: pointer;
     }
   }
 
@@ -104,6 +85,8 @@ export const PostPreviewContainer = styled.article<PostPreviewContainerProps>`
   }
 
   .uparrow {
+    left: 43%;
+    
     > div {
       margin-bottom: -.5em;
       border-top: 2px solid ${props => props.theme['primary']};
@@ -136,10 +119,6 @@ export const PostPreviewContainer = styled.article<PostPreviewContainerProps>`
         right: 0;
         left: auto;
         visibility: visible;
-
-        &:hover {
-          border: 1px solid transparent;
-        }
       }
     }
 
@@ -147,10 +126,6 @@ export const PostPreviewContainer = styled.article<PostPreviewContainerProps>`
       bottom: 0.5rem;
       left: 38%;
       visibility: visible;
-
-      &:hover {
-        border: 1px solid transparent;
-      }
     }
   }
 `

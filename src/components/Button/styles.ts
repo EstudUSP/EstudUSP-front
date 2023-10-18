@@ -19,9 +19,7 @@ export const Button = styled.button`
   /* transition: background-color 0.2s, border-color 0.2s, opacity 0.2s; */
   
   &:not(:disabled):hover {
-    color: ${props => props.theme['primary']};
-    background: transparent;
-    border: 1px solid ${props => props.theme['primary']};
+    opacity: 0.92;
   }
 
   &:disabled {

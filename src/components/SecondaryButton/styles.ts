@@ -13,10 +13,11 @@ export const SecondaryButton = styled.button<SecondaryButtonProps>`
   width: fit-content;
   color: ${props => props.theme['primary']};
   background: transparent;
-  border: 1px solid ${props => props.theme['outline']};
+  border: 1px solid ${props => props.theme['primary']};
 
   ${props => props.variant && `
-    opacity: 0.6;
+    background-color: ${props.theme['on-primary']};
+    opacity: 0.92;
   `}
 
   &:disabled {
@@ -25,8 +26,11 @@ export const SecondaryButton = styled.button<SecondaryButtonProps>`
   }
 
   &:not(:disabled):hover {
-    background: ${props => props.theme['surface-container-highest']};
     cursor: pointer;
+    ${props => !props.variant && `
+      background: ${props.theme['surface-container-highest']};
+      opacity: 0.92;
+    `}
   }
 
   @media (max-width: 1024px) {

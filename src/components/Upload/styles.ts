@@ -43,10 +43,9 @@ export const UploadMessage = styled.p<ITypeMessageColor>`
   align-items: center;
   padding: 15px 0;
   gap: 0.5rem;
+  font-weight: 700;
 
   svg {
-    width: 1.5rem;
-    height: 1.5rem;
     color: ${props => props.theme['primary']};
 
     &:hover {
