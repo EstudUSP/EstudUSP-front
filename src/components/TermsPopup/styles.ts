@@ -64,6 +64,26 @@ export const TermsPopupContent = styled.div`
         opacity: 0.8;
       }
     }
+
+    ul {
+      margin-left: 1.5rem;
+    }
+
+
+
+    ::-webkit-scrollbar {
+      width: 0.75rem;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: ${props => props.theme['surface-container-highest']};
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: ${props => props.theme['primary']};
+      border-radius: 20px;
+      border: 3px solid ${props => props.theme['surface-container-highest']};
+    }
   }
 `;
 
