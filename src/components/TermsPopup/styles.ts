@@ -69,6 +69,8 @@ export const TermsPopupContent = styled.div`
       margin-left: 1.5rem;
     }
 
+    scrollbar-color: ${props => props.theme['primary']} ${props => props.theme['surface-container-highest']};
+
     ::-webkit-scrollbar {
       width: 0.75rem;
     }
