@@ -60,7 +60,7 @@ export function TermsPopup({ setOpen }: TermsPopupProps) {
           <b>4. Conduta do Usuário</b>
           <p>
             Ao usar a plataforma, você concorda em não:
-            <ul style={{marginLeft: '1rem'}}>
+            <ul>
               <li>publicar qualquer conteúdo que viole os direitos de terceiros, incluindo direitos autorais, marcas 
                 registradas, privacidade ou outros direitos pessoais ou de propriedade;</li>
               <li>utilizar a plataforma para qualquer finalidade ilegal ou não autorizada;</li>
@@ -71,11 +71,11 @@ export function TermsPopup({ setOpen }: TermsPopupProps) {
           <br />
           
           <p>
-            O respeito com os outros membros deve ser a guia principal da plataforma. Portanto, é estritamente proibido o 
-            discurso de ódio, linguagem ofensiva ou qualquer tipo de preconceito,  assim como outros comportamentos 
+            O respeito com os outros membros deve ser a guia principal da plataforma. Portanto, é estritamente proibido 
+            qualquer forma de discurso de ódio, linguagem ofensiva ou preconceito, assim como outros comportamentos 
             inadequados que violem as diretrizes da nossa comunidade. Se você se deparar com qualquer postagem ou conteúdo 
-            inadequado, por favor, denuncie para nossa equipe por e-mail através de
-            <a href="mailto:atendimento@estudusp.com.br"> atendimento@estudusp.com.br</a>.
+            inadequado, por favor, denuncie à nossa equipe. Garantimos total anonimato. Você pode nos contactar por e-mail 
+            através de <a href="mailto:atendimento@estudusp.com.br"> atendimento@estudusp.com.br</a>.
           </p>
           <br />
           
