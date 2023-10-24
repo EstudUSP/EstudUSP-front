@@ -60,7 +60,7 @@ export function TermsPopup({ setOpen }: TermsPopupProps) {
           <b>4. Conduta do Usuário</b>
           <p>
             Ao usar a plataforma, você concorda em não:
-            <ul>
+            <ul style={{marginLeft: '1rem'}}>
               <li>publicar qualquer conteúdo que viole os direitos de terceiros, incluindo direitos autorais, marcas 
                 registradas, privacidade ou outros direitos pessoais ou de propriedade;</li>
               <li>utilizar a plataforma para qualquer finalidade ilegal ou não autorizada;</li>
