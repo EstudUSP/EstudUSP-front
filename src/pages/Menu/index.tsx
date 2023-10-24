@@ -6,10 +6,8 @@ import { SubjectsContext } from "../../contexts/SubjectsContext";
 import { useContextSelector } from "use-context-selector";
 import { SearchForm } from "./components/SearchForm";
 import { Loading } from "../../components/Loading/styles";
-import { TermsPopup } from "./components/TermsPopup";
 
 export function Menu() {
-  const [isTermsPopupOpen, setIsTermsPopupOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const subjects = useContextSelector(SubjectsContext, (context) => context.subjects);
 
@@ -17,13 +15,6 @@ export function Menu() {
     return context.fetchSubjects;
   });
 
-  useEffect(() => {
-    const termsPopupState = localStorage.getItem('termsPopupState');
-    if (termsPopupState === 'closed') {
-      setIsTermsPopupOpen(false);
-    }
-  }
-  , []);
 
   useEffect(() => {
     fetchSubjects('')
@@ -34,7 +25,6 @@ export function Menu() {
 
   return (
     <>
-      {!isTermsPopupOpen ? (
       <ForumContainer>
         <SearchForm />
         {subjects.flatMap(discipline => {
@@ -48,9 +38,6 @@ export function Menu() {
           </Loading>
         }
       </ForumContainer>
-      ) : (
-        <TermsPopup setOpen={setIsTermsPopupOpen} />
-      )}
     </>
   )
 }

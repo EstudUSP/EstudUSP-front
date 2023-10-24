@@ -50,6 +50,20 @@ export const TermsPopupContent = styled.div`
       font: 600 0.875rem/1.125rem 'Segoe_UI';
       color: ${props => props.theme['on-surface-variant']};
     }
+
+    b {
+      font-family: 'Segoe_UI_Bold';
+    }
+
+    a {
+      font-weight: bold;
+      color: ${props => props.theme['yellow-usp']};
+      text-decoration: none;
+      
+      :hover {
+        opacity: 0.8;
+      }
+    }
   }
 `;
 
