@@ -1,6 +1,7 @@
 {
   "name": "estudusp",
-  "private": true,
+  "private": false,
+  "homepage": "https://estudusp.com.br/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
