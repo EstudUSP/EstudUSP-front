@@ -14,6 +14,8 @@ import { Plus } from "phosphor-react";
 import { CommentsProvider } from "../../contexts/CommentsContext";
 import { useParams } from "react-router-dom";
 import { Loading } from "../../components/Loading/styles";
+import CreatableSelectComponent from "./components/CreatableSelect";
+import { TeachersProvider } from "../../contexts/TeachersContext";
 
 export function Forum() {
   const { clearUploads } = useFiles();
@@ -53,13 +55,18 @@ export function Forum() {
       <Sidebar />
       <main>
         <CommentsProvider>
+        <TeachersProvider>
 
-        <Dialog.Root open={isQuestionCardOpen} onOpenChange={setIsQuestionCardOpen}>
-          <Dialog.Trigger asChild>
-            <Button onClick={handleOpenQuestionCard} className="newQuestionBtn"> Adicionar pergunta <Plus weight="bold"/></Button>
-          </Dialog.Trigger>
-          <NewQuestionModal setIsQuestionCardOpen={setIsQuestionCardOpen} />
-        </Dialog.Root>
+        <div className="buttons">
+          <CreatableSelectComponent />
+
+          <Dialog.Root open={isQuestionCardOpen} onOpenChange={setIsQuestionCardOpen}>
+            <Dialog.Trigger asChild>
+              <Button onClick={handleOpenQuestionCard} className="newQuestionBtn"> Adicionar pergunta <Plus weight="bold"/></Button>
+            </Dialog.Trigger>
+            <NewQuestionModal setIsQuestionCardOpen={setIsQuestionCardOpen} />
+          </Dialog.Root>
+        </div>
 
         <SearchForm />
 
@@ -81,7 +88,8 @@ export function Forum() {
                 <img src='/loading.svg' alt='EstudUSP - Loading' />
             </Loading>
           }
-          
+        
+        </TeachersProvider>
         </CommentsProvider>
       </main>
     </ForumContainer>

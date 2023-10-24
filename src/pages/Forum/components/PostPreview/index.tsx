@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBr from 'date-fns/locale/pt-BR'
 
-import { PostPreviewContainer, PostPreviewContent } from './styles';
+import { PostPreviewContainer, PostPreviewContent, TeacherTag } from './styles';
 import { Avatar } from '../../../../components/Avatar';
 import { Comments } from '../Comments';
 import { CommentsContext } from '../../../../contexts/CommentsContext';
@@ -76,21 +76,26 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard }: PostP
   return (
     <PostPreviewContainer variant={getLikeState()}>
       <div className='header'>
-        <PostPreviewContent>
-          <Avatar 
-            content={post.anonymous ? 'Anônimo' : post.username}
-          />
-          <div className='authorInfo'>
-            <h6>{post.title}</h6>
-            <Subtitle>{post.anonymous ? 'Anônimo' : post.username}</Subtitle>
-            {!isCardOpen &&
-              <TerciaryButton className='downarrow' onClick={handleOpenCard}>
-                <p>{post.repliesQuantity} resposta{post.repliesQuantity!= 1 ? 's' : ''}</p>
-                <div></div>
-              </TerciaryButton>
-            }
-          </div>
-        </PostPreviewContent>
+        <div className='tag-container'>
+          {post.teacher &&
+            <TeacherTag>{post.teacher}</TeacherTag>
+          }
+          <PostPreviewContent>
+            <Avatar 
+              content={post.anonymous ? 'Anônimo' : post.username}
+            />
+            <div className='authorInfo'>
+              <h6>{post.title}</h6>
+              <Subtitle>{post.anonymous ? 'Anônimo' : post.username}</Subtitle>
+              {!isCardOpen &&
+                <TerciaryButton className='downarrow' onClick={handleOpenCard}>
+                  <p>{post.repliesQuantity} resposta{post.repliesQuantity!= 1 ? 's' : ''}</p>
+                  <div></div>
+                </TerciaryButton>
+              }
+            </div>
+          </PostPreviewContent>
+        </div>
 
         <div className="timeNlikes">
           <time title={publishedDateFormatted} dateTime={new Date(post.publishedAt).toISOString()}>

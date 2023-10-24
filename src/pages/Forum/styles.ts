@@ -20,8 +20,26 @@ export const ForumContainer = styled.div`
     justify-content: center;
     gap: 1rem;
 
-    > button {
-      margin: 0 0 0 auto;
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+  }
+
+  @media (max-width: 412px) {
+    main .buttons {
+      flex-direction: column-reverse;
+      gap: 1rem;
+      > div {
+        width: 100%;
+        > div {
+          width: 100%;
+        }
+      }
+      button {
+        width: 100%;
+      }
     }
   }
 

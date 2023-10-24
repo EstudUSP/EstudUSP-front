@@ -14,6 +14,7 @@ export interface Post {
   upvotes: number;
   anonymous: boolean;
   repliesQuantity: number;
+  teacher: string;
 }
 
 export interface CreatePostInput {
@@ -21,6 +22,7 @@ export interface CreatePostInput {
   username?: string;
   content: string;
   subjectId: string;
+  teacher?: string;
 }
 
 interface PostsContextType {
@@ -60,7 +62,7 @@ export function PostsProvider({ children }: PostsProviderProps) {
   }, []);
 
   const createPost = async (data: CreatePostInput) => {
-    const { username, title, content, subjectId } = data;
+    const { username, title, content, subjectId, teacher } = data;
     const attachments = uploadedFiles.map(file => file.file);
 
     const formData = new FormData();
@@ -69,6 +71,7 @@ export function PostsProvider({ children }: PostsProviderProps) {
     formData.append('username', username || '');
     formData.append('title', title);
     formData.append('content', content);
+    formData.append('teacher', teacher || '')
 
     console.log(attachments);
 

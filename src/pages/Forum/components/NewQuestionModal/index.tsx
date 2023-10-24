@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Button } from '../../../../components/Button/styles';
 import { SecondaryButton } from '../../../../components/SecondaryButton/styles';
+import CreatableSelectComponent from '../CreatableSelect';
 
 interface NewQuestionModalProps {
   setIsQuestionCardOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,6 +35,7 @@ export function NewQuestionModal({ setIsQuestionCardOpen }: NewQuestionModalProp
       title: data.title,
       content: data.content,
       subjectId: subjectId || '',
+      teacher: data.teacher,
     }
 
     await createPost(newPost);
@@ -59,18 +61,20 @@ export function NewQuestionModal({ setIsQuestionCardOpen }: NewQuestionModalProp
             {...register("username")}
           />
 
+          <CreatableSelectComponent isInForm={true} />
+
           <input 
             type="text"
             placeholder='Título da pergunta'
             {...register("title", { required: true, minLength: 5, maxLength: 100 })}
           />
-          {errors.title && <span>Título inválido!</span>}
+          {errors.title && <span className='error-span'>Título inválido!</span>}
 
           <textarea 
             placeholder='Descreva a sua pergunta'
             {...register("content", { required: true, minLength: 5, maxLength: 1000 })}
           />
-          {errors.content && <span>Campo inválido!</span>}
+          {errors.content && <span className='error-span'>Campo inválido!</span>}
 
           <Upload />
           <FileList />

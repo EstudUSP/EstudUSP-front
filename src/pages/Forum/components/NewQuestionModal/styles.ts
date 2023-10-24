@@ -60,7 +60,7 @@ export const QuestionForm = styled.form`
     line-height: 1.4;
   }
 
-  span {
+  .error-span {
     text-decoration: underline;
     margin-top: -1rem;
     color: red;
