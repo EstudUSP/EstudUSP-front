@@ -27,6 +27,10 @@ export const TerciaryButton = styled.button`
     cursor: pointer;
   }
 
+  &:not(:disabled):active {
+    opacity: 1;
+  }
+
   @media (max-width: 1024px) {
     max-height: fit-content;
   }

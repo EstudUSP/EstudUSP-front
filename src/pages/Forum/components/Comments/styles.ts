@@ -24,10 +24,14 @@ export const PostContainer = styled.div`
       font-weight: bold;
       color: ${props => props.theme['tertiary']};
       text-decoration: none;
-      transition: color 0.2s;
+      transition: all 0.2s;
       
       :hover {
-        opacity: 0.9;
+        filter: brightness(1.15);
+      }
+
+      :active {
+        filter: brightness(1.3);
       }
     }
 

@@ -144,6 +144,10 @@ export const TermsPopupButtons = styled.div`
           cursor: pointer;
         }
       }
+
+      &:active {
+        background-color: ${props => `${props.theme['on-surface']}30`};
+      }
     }
 
     p {
