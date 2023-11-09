@@ -39,6 +39,7 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
           EXCLUDE: "/dist/, /node_modules/, .htaccess"
+      env:
           VITE_SERVER_URL: ${{ secrets.VITE_SERVER_URL }}
           VITE_FORUM_MAX_NUM_ATTACHMENTS: ${{ secrets.VITE_FORUM_MAX_NUM_ATTACHMENTS }}
           VITE_FORUM_MAX_ATTACHMENT_SIZE: ${{ secrets.VITE_FORUM_MAX_ATTACHMENT_SIZE }}
