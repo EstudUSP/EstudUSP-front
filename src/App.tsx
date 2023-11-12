@@ -2,6 +2,7 @@
 
 // import deepmerge from 'deepmerge'
 import { BrowserRouter } from "react-router-dom";
+import Hotjar from '@hotjar/browser';
 // import './global.css'
 import { Router } from "./Router";
 import { GlobalStyle } from './styles/global';
@@ -18,6 +19,14 @@ import { FileProvider } from "./contexts/files";
 //   },
 // })
 
+try {
+  const siteId = Number(import.meta.env.VITE_HOTJAR_ID);
+  const hotjarVersion = Number(import.meta.env.VITE_HOTJAR_VERSION);
+
+  Hotjar.init(siteId, hotjarVersion);
+} catch (e) {
+  console.log('Cannot initialize Hotjar:', e);
+}
 
 function App() {
 
