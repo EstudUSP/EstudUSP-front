@@ -4,7 +4,7 @@ import { useContextSelector } from 'use-context-selector';
 
 import { CreatePostInput, PostsContext } from '../../../../contexts/PostsContext';
 import FileList from '../../../../components/FileList';
-import Upload from '../../../../components';
+import Upload from '../../../../components/Upload';
 import { X } from 'phosphor-react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';

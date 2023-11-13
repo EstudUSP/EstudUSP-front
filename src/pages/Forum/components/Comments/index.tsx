@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { Comment } from '../Comment';
 import { CommentForm, PostContainer } from './styles';
-import Upload from '../../../../components';
+import Upload from '../../../../components/Upload';
 import FileList from '../../../../components/FileList';
 import { useContextSelector } from 'use-context-selector';
 import { Post, PostsContext } from '../../../../contexts/PostsContext';

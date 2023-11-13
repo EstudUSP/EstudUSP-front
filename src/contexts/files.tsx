@@ -47,7 +47,7 @@ interface IFileProviderProps {
 const FileProvider: React.FC<IFileProviderProps> = ({ children }) => {
   const [uploadedFiles, setUploadedFiles] = useState<IFile[]>([]);
 
-  const maxNumAttachments = Number(import.meta.env.VITE_FORUM_MAX_NUM_ATTACHMENTS);
+  // const maxNumAttachments = Number(import.meta.env.VITE_FORUM_MAX_NUM_ATTACHMENTS);
   const maxAttachmentSize = Number(import.meta.env.VITE_FORUM_MAX_ATTACHMENT_SIZE);
 
   useEffect(() => {
@@ -58,20 +58,19 @@ const FileProvider: React.FC<IFileProviderProps> = ({ children }) => {
 
   const handleUpload = useCallback(
     (files: File[]) => {
-      console.log(files)
-      console.log(uploadedFiles)
-      if (uploadedFiles.length + files.length > maxNumAttachments) {
-        // Número máximo de anexos
-        alert(`Você pode fazer upload de no máximo ${maxNumAttachments} arquivos.`);
-        return;
-      } else {
-        // Tamanho máximo de anexo
-        const totalSize = files.reduce((total, file) => total + file.size, 0);
+      // if (uploadedFiles.length + files.length > maxNumAttachments) {
+      //   // Número máximo de anexos
+      //   alert(`Você pode fazer upload de no máximo ${maxNumAttachments} arquivos.`);
+      //   return;
+      // } else {
+        // Tamanho máximo de anexo (considerando todos os arquivos já carregados e os novos arquivos)
+        const totalSize = uploadedFiles.reduce((total, file) => total + file.file.size, 0) +
+                          files.reduce((total, file) => total + file.size, 0);
         if (totalSize > maxAttachmentSize) {
-          alert(`O tamanho total dos arquivos não pode exceder ${filesize(maxAttachmentSize)}.`);
+          alert(`O tamanho total da soma dos arquivos não pode exceder ${filesize(maxAttachmentSize)}.`);
           return;
         } 
-      }
+      // }
       const newUploadedFiles: IFile[] = files.map((file: File) => ({
         file,
         id: uuidv4(),
