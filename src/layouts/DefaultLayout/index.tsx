@@ -3,6 +3,7 @@ import { Header } from "../../components/Header";
 import { LayoutContainer } from "./styles";
 import { useEffect, useState } from "react";
 import { TermsPopup } from "../../components/TermsPopup";
+import { Footer } from "../../components/Footer";
 
 export function DefaultLayout() {
   const [isTermsPopupOpen, setIsTermsPopupOpen] = useState(false);
@@ -23,6 +24,7 @@ export function DefaultLayout() {
       ) : (
         <TermsPopup setOpen={setIsTermsPopupOpen} />
       )}
+        <Footer />
       </LayoutContainer>
     </>
   );

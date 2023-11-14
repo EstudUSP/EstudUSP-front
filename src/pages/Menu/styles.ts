@@ -10,7 +10,7 @@ export const ForumContainer = styled.main`
 
   width: 100%;
   max-width: 73.13rem;
-  margin-block: 2rem 4rem;
+  margin-block: 2rem;
   padding: 0 1rem;
   align-self: center;
 
