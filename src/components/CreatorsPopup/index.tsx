@@ -20,7 +20,7 @@ export function CreatorsPopup() {
           <CreatorsPopupContent>
             {creators.map((creator, id) => (
               <CreatorCardContainer key={id}>
-                <img src={creator.image} alt="" />
+                <img src={creator.image} alt={`Foto ${creator.name}`} />
                 <div className="creator-info">
                   <p className="h7">{creator.name}</p>
                   <span>{creator.activity}</span>
