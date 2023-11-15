@@ -40,7 +40,7 @@ export function Sidebar () {
             src={currentActiveSubject.previewImg}
           />
           <div className='profile'>
-            <h6>{currentActiveSubject.title}</h6>
+            <h6>{currentActiveSubject.title == "Banco de Dados 2" ? "Banco de Dados 1" : currentActiveSubject.title}</h6>
             <Subtitle>Semestre {currentActiveSubject.semester}</Subtitle>
           </div>
         </SidebarItem>
