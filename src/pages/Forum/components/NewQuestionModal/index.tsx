@@ -68,9 +68,9 @@ export function NewQuestionModal({ setIsQuestionCardOpen }: NewQuestionModalProp
 
           <textarea 
             placeholder='Descreva a sua pergunta'
-            {...register("content", { required: true, minLength: 5, maxLength: 1000 })}
+            {...register("content", { required: true, minLength: 5, maxLength: 2000 })}
           />
-          {errors.content && <span>Campo inválido!</span>}
+          {errors.content && <span>Sua pergunta deve ter entre 5 e 2000 caracteres!</span>}
 
           <Upload />
           <FileList />
