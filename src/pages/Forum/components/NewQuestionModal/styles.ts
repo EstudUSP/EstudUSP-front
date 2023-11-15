@@ -12,6 +12,7 @@ export const Overlay = styled(Dialog.Overlay)`
 export const Content = styled(Dialog.Content)`
   min-width: 32rem;
   width: 50vw;
+  max-width: 60rem;
   border-radius: 8px;
   padding: 2.5rem 3rem;
   background: ${props => props.theme['inverse-on-surface']};

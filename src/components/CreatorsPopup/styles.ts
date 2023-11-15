@@ -11,6 +11,7 @@ export const Overlay = styled(Dialog.Overlay)`
 
 export const Content = styled(Dialog.Content)`
   min-width: 32rem;
+  max-width: 70rem;
   width: calc(100vw - 30%);
   border-radius: 8px;
   background: ${props => props.theme['inverse-on-surface']};
@@ -36,10 +37,9 @@ export const CreatorsPopupContainer = styled.div`
   width: 100%;
   padding: 4rem;
   border-radius: 8px;
-  background-color: ${props => props.theme['inverse-on-surface']};
 
   @media (max-width: 768px) {
-    padding: 3rem 2rem;
+    padding: 0;
     margin: 1rem;
     max-width: calc(100% - 2rem);
   }
@@ -52,7 +52,7 @@ export const CreatorsPopupContent = styled.div`
   gap: 4rem;
 
   @media (max-width: 768px) {
-    gap: 2rem;
+    gap: 1rem;
     grid-template-columns: 1fr;
   }
 `;
