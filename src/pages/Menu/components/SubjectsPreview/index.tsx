@@ -18,7 +18,7 @@ export function SubjectPreview({ discipline }: SubjectProps) {  return (
             <img src={discipline.previewImg} alt="" />
           </div>
           <div className='disciplineInfo'>
-            <h6>{discipline.title == "Banco de Dados 2" ? "Banco de Dados 1" : discipline.title}</h6>
+            <h6>{discipline.title}</h6>
             <Subtitle>Semestre {discipline.semester}</Subtitle>
           </div>
         </SubjectPreviewContent>
