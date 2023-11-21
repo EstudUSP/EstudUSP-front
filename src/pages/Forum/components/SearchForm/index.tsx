@@ -32,7 +32,7 @@ export function SearchForm() {
   });
 
   async function handleSearchPosts(data: SearchFormInputs) {
-    await fetchPosts(subjectId || '', data.query);
+    await fetchPosts(subjectId || '', { keyword: data.query });
     setCurrentSearchWord(data.query);
   }
 

@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Button } from '../../../../components/Button/styles';
 import { SecondaryButton } from '../../../../components/SecondaryButton/styles';
+import CreatableSelectComponent from '../CreatableSelect';
 
 interface NewQuestionModalProps {
   setIsQuestionCardOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,11 +21,12 @@ export function NewQuestionModal({ setIsQuestionCardOpen }: NewQuestionModalProp
 
   const createPost = useContextSelector(PostsContext, (context) => context.createPost);
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<CreatePostInput>({
+  const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm<CreatePostInput>({
     defaultValues: {
       username: '',
       title: '',
       content: '',
+      professor: '',
     }
   });
   
@@ -34,6 +36,7 @@ export function NewQuestionModal({ setIsQuestionCardOpen }: NewQuestionModalProp
       title: data.title,
       content: data.content,
       subjectId: subjectId || '',
+      professor: data.professor,
     }
 
     await createPost(newPost);
@@ -59,12 +62,14 @@ export function NewQuestionModal({ setIsQuestionCardOpen }: NewQuestionModalProp
             {...register("username")}
           />
 
+          <CreatableSelectComponent isInForm={true} selectProfessor={setValue} />
+
           <input 
             type="text"
             placeholder='Título da pergunta'
             {...register("title", { required: true, minLength: 5, maxLength: 100 })}
           />
-          {errors.title && <span>Título inválido!</span>}
+          {errors.title && <span className='error-span'>Título inválido!</span>}
 
           <textarea 
             placeholder='Descreva a sua pergunta'

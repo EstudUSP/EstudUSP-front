@@ -14,6 +14,7 @@ export interface Post {
   upvotes: number;
   anonymous: boolean;
   repliesQuantity: number;
+  teacher: string;
 }
 
 export interface CreatePostInput {
@@ -21,11 +22,12 @@ export interface CreatePostInput {
   username?: string;
   content: string;
   subjectId: string;
+  professor?: string;
 }
 
 interface PostsContextType {
   posts: Post[];
-  fetchPosts: (subjectId: string, query?: string) => Promise<Post[]>;
+  fetchPosts: (subjectId: string, query?: {[k: string]: string}) => Promise<Post[]>;
   createPost: (data: CreatePostInput) => Promise<void>;
   updateSameQuestion: (id: number) => Promise<void>;
   removeSameQuestion: (id: number) => Promise<void>;
@@ -45,12 +47,12 @@ export function PostsProvider({ children }: PostsProviderProps) {
   const [posts, setPosts] = useState<Post[]>([]);
   const { uploadedFiles } = useFiles();
   
-  const fetchPosts = useCallback(async (subjectId: string, query?: string) => {
+  const fetchPosts = useCallback(async (subjectId: string, query?: {[k: string]: string}) => {
     const response = await api.get(`/${subjectId}/questions`, {
       params: {
         _sort: 'publishedAt',
         _order: 'desc',
-        keyword: query,
+        ...query,
       }
     });
 
@@ -60,7 +62,7 @@ export function PostsProvider({ children }: PostsProviderProps) {
   }, []);
 
   const createPost = async (data: CreatePostInput) => {
-    const { username, title, content, subjectId } = data;
+    const { username, title, content, subjectId, professor } = data;
     const attachments = uploadedFiles.map(file => file.file);
 
     const formData = new FormData();
@@ -69,6 +71,7 @@ export function PostsProvider({ children }: PostsProviderProps) {
     formData.append('username', username || '');
     formData.append('title', title);
     formData.append('content', content);
+    formData.append('professor', professor || '')
 
     console.log(attachments);
 
