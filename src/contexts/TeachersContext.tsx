@@ -26,17 +26,9 @@ interface TeachersProviderProps {
 export function TeachersProvider({ children }: TeachersProviderProps) {
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   
-  const fetchTeachers = useCallback(async (subjectId: string, query?: string) => {
-    const response = await api.get(`/${subjectId}/questions`, {
-      params: {
-        _sort: 'publishedAt',
-        _order: 'desc',
-        keyword: query,
-      }
-    });
-
+  const fetchTeachers = useCallback(async () => {
+    const response = await api.get(`/professors`);
     setTeachers(response.data);
-
     return response.data;
   }, []);
 

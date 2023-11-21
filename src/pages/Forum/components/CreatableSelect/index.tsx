@@ -1,60 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StylesConfig } from 'react-select';
 
 import CreatableSelect from 'react-select/creatable';
 import { useTheme } from 'styled-components';
 import { useContextSelector } from 'use-context-selector';
 import { TeachersContext } from '../../../../contexts/TeachersContext';
+import { PostsContext } from '../../../../contexts/PostsContext';
+import { useParams } from 'react-router-dom';
 
 interface Option {
   readonly label: string;
   readonly value: string;
 }
 
-const createOption = (label: string) => ({
+const createOption = (label: string, customValue?: string) => ({
   label,
-  value: label.toLowerCase().replace(/\W/g, ''),
+  value: customValue === undefined ? label : customValue,
 });
 
 interface CreatableSelectProps {
   isInForm?: boolean;
+  selectProfessor?: (name: 'professor', value?: string) => void;
 }
 
-
-const CreatableSelectComponent = ({ isInForm = false }: CreatableSelectProps) => {
+const CreatableSelectComponent = ({ isInForm = false, selectProfessor }: CreatableSelectProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [value, setValue] = useState<Option | null>();
   const theme = useTheme();
+  const { subjectId } = useParams();
 
-  const teachers = useContextSelector(TeachersContext, (context) => context.teachers);
   const fetchTeachers = useContextSelector(TeachersContext, (context) => context.fetchTeachers);
   const createTeacher = useContextSelector(TeachersContext, (context) => context.createTeacher);
+  const fetchPosts = useContextSelector(PostsContext, (context) => context.fetchPosts);
   
   const defaultOptions = [
-    createOption('Perguntas sem tag'),
+    createOption('Todos(as) professores(as)', ''),
   ];
   
-  const teachersOptions = teachers.map((teacher) => createOption(teacher.toString()));
-  
-  const [options, setOptions] = useState([...defaultOptions, ...teachersOptions]);
+  const [options, setOptions] = useState(defaultOptions);
 
   const handleCreate = (inputValue: string) => {
-    setIsLoading(true);
-    setTimeout(() => {
-      const newOption = createOption(inputValue);
-      setIsLoading(false);
-      createTeacher({ name: inputValue }); // TODO: Corrigir aqui
-      setOptions((prev) => [...prev, newOption]); // TODO: Corrigir aqui
-      setValue(newOption);
-    }, 1000);
+    const newOption = createOption(inputValue);
+    createTeacher({ name: inputValue });
+    setOptions((prev) => [...prev, newOption]);
+    setValue(newOption);
+    selectProfessor && selectProfessor('professor', inputValue);
   };
 
-  // useEffect(() => {
-  //   fetchTeachers('')
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // }, [fetchTeachers]);
+  const handleSelect = (option: { label: string, value: string }) => {
+    setValue(option);
+    selectProfessor && selectProfessor('professor', option.value);
+
+    if (!isInForm) fetchPosts(subjectId || '', { professor: option.value });
+  }
+
+  useEffect(() => {
+    fetchTeachers('')
+      .then((teachers) => {
+        const teachersOptions = teachers.map((teacher) => createOption(teacher.name.toString()));
+        setOptions([...defaultOptions, ...teachersOptions]);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [fetchTeachers]);
 
   const colourStyles: StylesConfig<Option, false> = {
     control: styles => ({ 
@@ -124,12 +133,12 @@ const CreatableSelectComponent = ({ isInForm = false }: CreatableSelectProps) =>
       isClearable
       isDisabled={isLoading}
       isLoading={isLoading}
-      onChange={(newValue) => setValue(newValue)}
+      onChange={handleSelect}
       onCreateOption={handleCreate}
       options={options}
       value={value}
       styles={colourStyles}
-      placeholder={isInForm ? 'Adicione tag por professor(a) (opcional)' : 'Filtre por professor(a)'}
+      placeholder={isInForm ? 'Professor(a) (opcional)' : 'Filtre por professor(a)'}
       formatCreateLabel={(inputValue) => `Criar professor(a) "${inputValue}"`}
       // TODO: Pegar a info de quando é selecionado (pra filtrar no fórum e devolver nome no form)
     />

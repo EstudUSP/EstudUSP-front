@@ -21,11 +21,12 @@ export function NewQuestionModal({ setIsQuestionCardOpen }: NewQuestionModalProp
 
   const createPost = useContextSelector(PostsContext, (context) => context.createPost);
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<CreatePostInput>({
+  const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm<CreatePostInput>({
     defaultValues: {
       username: '',
       title: '',
       content: '',
+      professor: '',
     }
   });
   
@@ -35,7 +36,7 @@ export function NewQuestionModal({ setIsQuestionCardOpen }: NewQuestionModalProp
       title: data.title,
       content: data.content,
       subjectId: subjectId || '',
-      teacher: data.teacher,
+      professor: data.professor,
     }
 
     await createPost(newPost);
@@ -61,7 +62,7 @@ export function NewQuestionModal({ setIsQuestionCardOpen }: NewQuestionModalProp
             {...register("username")}
           />
 
-          <CreatableSelectComponent isInForm={true} />
+          <CreatableSelectComponent isInForm={true} selectProfessor={setValue} />
 
           <input 
             type="text"
