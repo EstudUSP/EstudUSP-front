@@ -64,6 +64,26 @@ export const TermsPopupContent = styled.div`
         opacity: 0.8;
       }
     }
+
+    ul {
+      margin-left: 1.5rem;
+    }
+
+    scrollbar-color: ${props => props.theme['primary']} ${props => props.theme['surface-container-highest']};
+
+    ::-webkit-scrollbar {
+      width: 0.75rem;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: ${props => props.theme['surface-container-highest']};
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: ${props => props.theme['primary']};
+      border-radius: 20px;
+      border: 3px solid ${props => props.theme['surface-container-highest']};
+    }
   }
 `;
 
@@ -123,6 +143,10 @@ export const TermsPopupButtons = styled.div`
         input[type="checkbox"] {
           cursor: pointer;
         }
+      }
+
+      &:active {
+        background-color: ${props => `${props.theme['on-surface']}30`};
       }
     }
 

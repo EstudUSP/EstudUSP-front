@@ -6,7 +6,8 @@ export const SearchFormContainer = styled.form`
   gap: 1rem;
   background-color: ${props => props.theme['surface-container-highest']};
   border-radius: 8px;
-  padding: 1rem 0.75rem 1rem 1rem;
+  border: 2px solid transparent;
+  padding: calc(1rem - 2px) calc(0.75rem - 2px) calc(1rem - 2px) calc(1rem - 2px);
 
   input {
     flex: 1;
@@ -16,6 +17,15 @@ export const SearchFormContainer = styled.form`
 
     ::placeholder {
       color: ${props => props.theme['on-surface']};
+    }
+  
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover, 
+    &:-webkit-autofill:focus, 
+    &:-webkit-autofill:active {
+      -webkit-background-clip: text;
+      -webkit-box-shadow: 0 0 0 30px ${props => props.theme['surface-container-highest']} inset !important;
+      -webkit-text-fill-color: ${props => props.theme['on-surface-variant']} !important;
     }
   }
 
@@ -37,5 +47,9 @@ export const SearchFormContainer = styled.form`
       color: ${props => props.theme.white};
       transition: color 0.2s;
     }
+  }
+
+  &:has(input[type=text]:focus) {
+    border-color: ${props => props.theme['primary']};
   }
 `;

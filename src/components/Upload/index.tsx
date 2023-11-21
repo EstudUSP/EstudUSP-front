@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 
-import { DropContainer, UploadMessage } from "./Upload/styles";
-import { useFiles } from "../contexts/files";
+import { DropContainer, UploadMessage } from "./styles";
+import { useFiles } from "../../contexts/files";
 import { UploadSimple } from "phosphor-react";
 
 

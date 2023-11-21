@@ -12,6 +12,7 @@ export const SidebarContainer = styled.aside`
 
   a {
     text-decoration: none;
+    width: fit-content;
   }
 
   button {
@@ -94,8 +95,12 @@ export const ComplaintInfoContainer = styled.div`
       color: ${props => props.theme['primary']};
       transition: all 0.2s;
 
-      &:hover {
-        opacity: 0.8;
+      :hover {
+        filter: brightness(1.15);
+      }
+
+      :active {
+        filter: brightness(1.3);
       }
     }
   }

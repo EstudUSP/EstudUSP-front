@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { Comment } from '../Comment';
 import { CommentForm, PostContainer } from './styles';
-import Upload from '../../../../components';
+import Upload from '../../../../components/Upload';
 import FileList from '../../../../components/FileList';
 import { useContextSelector } from 'use-context-selector';
 import { Post, PostsContext } from '../../../../contexts/PostsContext';
@@ -143,9 +143,9 @@ export function Comments({ post, comments }: PostProps) {
 
           <textarea 
             placeholder='Deixe a sua resposta'
-            {...register("content", { required: true, minLength: 5, maxLength: 1000 })}
+            {...register("content", { required: true, minLength: 5, maxLength: 2000 })}
           />
-          {errors.content && <span>Comentário inválido!</span>}
+          {errors.content && <span>Sua resposta deve ter entre 5 e 2000 caracteres!</span>}
 
           <Upload />
           <FileList />

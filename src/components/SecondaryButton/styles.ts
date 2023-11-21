@@ -33,6 +33,12 @@ export const SecondaryButton = styled.button<SecondaryButtonProps>`
     `}
   }
 
+  &:not(:disabled):active {
+    ${props => !props.variant && `
+      opacity: 1;
+    `}
+  }
+
   @media (max-width: 1024px) {
     max-height: fit-content;
   }

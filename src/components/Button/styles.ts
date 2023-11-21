@@ -19,7 +19,11 @@ export const Button = styled.button`
   /* transition: background-color 0.2s, border-color 0.2s, opacity 0.2s; */
   
   &:not(:disabled):hover {
-    opacity: 0.92;
+    filter: brightness(1.15);
+  }
+
+  &:not(:disabled):active {
+    filter: brightness(1.3);
   }
 
   &:disabled {

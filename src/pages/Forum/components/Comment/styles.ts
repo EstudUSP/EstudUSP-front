@@ -67,9 +67,14 @@ export const CommentBox = styled.div<CommentBoxProps>`
       font-weight: bold;
       color: ${props => props.theme['yellow-usp']};
       text-decoration: none;
+      transition: all 0.2s;
       
       :hover {
-        opacity: 0.8;
+        filter: brightness(1.15);
+      }
+
+      :active {
+        filter: brightness(1.3);
       }
     }
     

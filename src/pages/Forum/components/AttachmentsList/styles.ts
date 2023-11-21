@@ -46,15 +46,21 @@ export const FileInfo = styled.div`
   > div {
     display: flex;
     flex-direction: column;
+    width: 100%;
 
-    strong {
-      color: ${props => props.theme['on-surface-variant']};
+    a {
+      width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-
-      &:hover {
-        text-decoration: underline;
+      color: ${props => props.theme['on-surface-variant']} !important;
+      
+      strong {
+        color: ${props => props.theme['on-surface-variant']};
+        
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -66,7 +72,7 @@ export const FileInfo = styled.div`
   @media (max-width: 1024px) {
 
     > div { 
-      max-width: calc(100vw - 17rem);
+      max-width: calc(100vw - 12rem);
 
       strong {
         font-size: 0.875rem;

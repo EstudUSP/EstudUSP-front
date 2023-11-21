@@ -4,7 +4,7 @@ import { useContextSelector } from 'use-context-selector';
 
 import { CreatePostInput, PostsContext } from '../../../../contexts/PostsContext';
 import FileList from '../../../../components/FileList';
-import Upload from '../../../../components';
+import Upload from '../../../../components/Upload';
 import { X } from 'phosphor-react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -73,9 +73,9 @@ export function NewQuestionModal({ setIsQuestionCardOpen }: NewQuestionModalProp
 
           <textarea 
             placeholder='Descreva a sua pergunta'
-            {...register("content", { required: true, minLength: 5, maxLength: 1000 })}
+            {...register("content", { required: true, minLength: 5, maxLength: 2000 })}
           />
-          {errors.content && <span className='error-span'>Campo inválido!</span>}
+          {errors.content && <span>Sua pergunta deve ter entre 5 e 2000 caracteres!</span>}
 
           <Upload />
           <FileList />

@@ -11,10 +11,9 @@ export const Overlay = styled(Dialog.Overlay)`
 
 export const Content = styled(Dialog.Content)`
   min-width: 32rem;
-  width: 50vw;
-  max-width: 60rem;
+  max-width: 70rem;
+  width: calc(100vw - 30%);
   border-radius: 8px;
-  padding: 2.5rem 3rem;
   background: ${props => props.theme['inverse-on-surface']};
 
   position: fixed;
@@ -34,45 +33,59 @@ export const Content = styled(Dialog.Content)`
   }
 `;
 
-export const QuestionForm = styled.form`
+export const CreatorsPopupContainer = styled.div`
+  width: 100%;
+  padding: 4rem;
+  border-radius: 8px;
+
+  @media (max-width: 768px) {
+    padding: 0;
+    margin: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+`;
+
+export const CreatorsPopupContent = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const CreatorCardContainer = styled.div`
+  max-width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.2s;
 
-  input[type="text"] {
-    width: 100%;
-    background: ${props => props.theme['surface-container-lowest']};
-    border: 0;
-    padding: 1rem;
+  img {
+    width: 5.75rem;
+    height: 5.75rem;
     border-radius: 8px;
-    color: ${props => props.theme['on-surface']};
   }
 
-  textarea {
-    width: 100%;
-    background: ${props => props.theme['surface-container-lowest']};
-    border: 0;
-    resize: none;
-    height: 10rem;
-    padding: 1rem;
-    border-radius: 8px;
-    color: ${props => props.theme['on-surface']};
-    line-height: 1.4;
+  .h7 {
+    font: 700 1.125rem/1.5rem 'Segoe_UI_Bold', sans-serif;
+    color: ${props => props.theme["primary"]};
   }
 
-  .error-span {
-    text-decoration: underline;
-    margin-top: -1rem;
-    color: red;
+  span {
+    font: 700 0.875rem/1.25rem 'Segoe_UI_Bold', sans-serif;
+    color: ${props => props.theme["on-surface"]};
+    margin-bottom: 0.5rem;
   }
 
-  .buttons {
-    display: flex;
-    gap: 1.5rem;
-    align-self: flex-end;
+  @media (max-width: 768px) {
+    max-width: 100%;
   }
-`
+`;
 
 export const CloseButton = styled(Dialog.Close)`
   position: absolute;
