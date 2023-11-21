@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StylesConfig } from 'react-select';
+import { useState, useEffect } from 'react';
+import { StylesConfig, SingleValue } from 'react-select';
 
 import CreatableSelect from 'react-select/creatable';
 import { useTheme } from 'styled-components';
@@ -47,7 +47,9 @@ const CreatableSelectComponent = ({ isInForm = false, selectProfessor }: Creatab
     selectProfessor && selectProfessor('professor', inputValue);
   };
 
-  const handleSelect = (option: { label: string, value: string }) => {
+  const handleSelect = (option: SingleValue<Option>) => {
+    if (!option) return;
+
     setValue(option);
     selectProfessor && selectProfessor('professor', option.value);
 
