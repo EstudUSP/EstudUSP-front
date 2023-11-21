@@ -81,7 +81,16 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard }: PostP
             content={post.anonymous ? 'Anônimo' : post.username}
           />
           <div className='authorInfo'>
-            <h6>{post.title}</h6>
+            {/* <h6>{post.title}</h6> */}
+            <h6>{
+              post.title == 'P1 - 2022 - OAC - II (prof. Gisele) questão 1' ? 'Comparação entre computadores' :
+              post.title == 'P1 - 2022 - OAC - II (prof. Gisele) questão 2' ? 'Pipeline' :
+              post.title == 'P1 - 2022 - OAC - II (prof. Gisele) questão 3' ? 'Máquina superescalar' :
+              post.title == 'P1 - 2022 - OAC - II (prof. Gisele) questão 4 (Parte 1 de 2)' ? 'Linguagem de montagem / RISC (Parte 1 de 2)' :
+              post.title == 'P1 - 2022 - OAC - II (prof. Gisele) questão 4 (Parte 2 de 2)' ? 'Linguagem de montagem / RISC (Parte 2 de 2)' :
+              post.title == 'P1 - 2022 - OAC - II (prof. Gisele) questão 5' ? 'Arquitetura RISC' :
+              post.title
+            }</h6>
             <Subtitle>{post.anonymous ? 'Anônimo' : post.username}</Subtitle>
             {!isCardOpen &&
               <TerciaryButton className='downarrow' onClick={handleOpenCard}>
