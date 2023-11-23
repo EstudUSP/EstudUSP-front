@@ -16,7 +16,7 @@ export const PostContainer = styled.div`
       flex-wrap: wrap;
       align-items: center;
       justify-content: flex-start;
-      padding-block: 0.5rem;
+      padding-block: 0.5rem 0;
 
     }
 
@@ -40,21 +40,14 @@ export const PostContainer = styled.div`
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
+      margin-top: 1.5rem;
       gap: 1rem;
     }
   }
 
-  .separator {
-    align-self: center;
-    width: 100%;
-    height: 1px;
-    background-color: ${props => props.theme['gray-600']};
-    margin-block: 2rem 1.5rem;
-  }
-
   .commentList {
     width: 100%;
-    margin-block: 0 2rem;
+    margin-block: 1.5rem 2rem;
   }
 
   .commentList > h6 {
@@ -84,11 +77,9 @@ export const CommentForm = styled.form`
   gap: 1rem;
   width: 100%;
   margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid ${props => props.theme['gray-600']};
   
   > strong {
-    line-height: 1.6;
+    font: 700 1rem/1.25rem "Segoe_UI_Bold";
     color: ${props => props.theme['on-surface']};
   }
 

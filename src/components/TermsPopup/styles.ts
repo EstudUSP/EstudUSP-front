@@ -53,6 +53,7 @@ export const TermsPopupContent = styled.div`
 
     b {
       font-family: 'Segoe_UI_Bold';
+      color: ${props => props.theme['on-surface-variant']};
     }
 
     a {
