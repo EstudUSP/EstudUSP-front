@@ -1,13 +1,17 @@
 import { HeaderContainer, HeaderWrapper } from "./styles";
 
-import logo from '../../assets/estudusp_logo.svg';
+import logoDark from '../../assets/estudusp_logo-dark.svg';
+import logoLight from '../../assets/estudusp_logo-light.svg';
 import { ThemeToggle } from "../ThemeToggle";
+import { useTheme } from "../../contexts/ThemeContext";
 
 export function Header() {
+  const { theme } = useTheme();
+
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        <img src={logo} alt="" />
+        <img src={theme.mode == "dark" ? logoDark : logoLight} alt="" />
         <ThemeToggle />
       </HeaderWrapper>
     </HeaderContainer>
