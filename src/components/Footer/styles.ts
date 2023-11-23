@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const FooterContainer = styled.footer`
-  height: 5rem;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-block: 1rem;
-  margin-top: auto;
+  padding-block: 2rem;
+  bottom: 0; /* Ajuste para fixar o rodapé na parte inferior da tela */
+  z-index: 999;
+  /* margin-top: auto; */
   /* border-bottom: 1px solid ${props => props.theme['outline']}; */
   
   div {
