@@ -11,9 +11,8 @@ export const PostPreviewContainer = styled.article<PostPreviewContainerProps>`
   position: relative;
   
   .header {
-    height: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 0.5rem;
     
@@ -25,7 +24,6 @@ export const PostPreviewContainer = styled.article<PostPreviewContainerProps>`
     }
 
     .timeNlikes {
-      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
@@ -142,4 +140,18 @@ export const PostPreviewContent = styled.div`
     gap: 0.25rem;
     align-self: center;
   }
+`
+
+export const TeacherTag = styled.div`
+  width: fit-content;
+  background: ${props => props.theme['surface-variant']};
+  display: flex;
+  padding: 0.25rem 0.75rem;
+  justify-content: center;
+  align-items: center;
+  color: ${props => props.theme['on-surface-variant']};
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
 `
