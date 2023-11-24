@@ -6,10 +6,8 @@ export const FooterContainer = styled.footer`
   align-items: center;
   justify-content: center;
   padding-block: 2rem;
-  bottom: 0; /* Ajuste para fixar o rodapé na parte inferior da tela */
-  z-index: 999;
-  /* margin-top: auto; */
-  /* border-bottom: 1px solid ${props => props.theme['outline']}; */
+  margin-top: auto;
+  /* border-top: 1px solid ${props => props.theme['outline']}; */
   
   div {
     display: flex;

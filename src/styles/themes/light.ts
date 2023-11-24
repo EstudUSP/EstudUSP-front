@@ -1,4 +1,6 @@
-export const lightTheme = {
+import { ThemeProps } from "./props";
+
+export const lightTheme: ThemeProps = {
   mode: 'light',
   white: '#FFF',
 
