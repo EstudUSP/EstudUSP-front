@@ -3,8 +3,8 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { lightTheme } from '../styles/themes/light';
 import { darkTheme } from '../styles/themes/dark';
+import { Theme } from '../@types/styled';
 
-type Theme = typeof lightTheme | typeof darkTheme;
 
 interface ThemeContextProps {
   children: ReactNode;

@@ -1,4 +1,6 @@
-export const darkTheme = {
+import { ThemeProps } from "./props";
+
+export const darkTheme: ThemeProps = {
   mode: 'dark',
   white: '#FFF',
 
