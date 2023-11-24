@@ -132,7 +132,7 @@ const CreatableSelectComponent = ({ isInForm = false, selectProfessor }: Creatab
 
   return (
     <CreatableSelect
-      isClearable
+      // isClearable
       isDisabled={isLoading}
       isLoading={isLoading}
       onChange={handleSelect}
