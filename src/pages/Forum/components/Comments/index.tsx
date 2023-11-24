@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { Comment } from '../Comment';
-import { CommentForm, PostContainer } from './styles';
+import { CommentForm, PostContainer, ShareButton, ShareButtonContainer } from './styles';
 import Upload from '../../../../components/Upload';
 import FileList from '../../../../components/FileList';
 import { useContextSelector } from 'use-context-selector';
@@ -12,6 +12,7 @@ import { useFiles } from '../../../../contexts/files';
 import { SecondaryButton } from '../../../../components/SecondaryButton/styles';
 import AttachmentsList from '../AttachmentsList';
 import { useForm } from 'react-hook-form';
+import { ShareNetwork } from 'phosphor-react';
 
 interface PostProps {
   post: Post;
@@ -51,6 +52,7 @@ export function Comments({ post, comments }: PostProps) {
   const createComment = useContextSelector(CommentsContext, (context) => context.createComment);
   const updateSameQuestion = useContextSelector(PostsContext, posts => posts.updateSameQuestion);
   const removeSameQuestion = useContextSelector(PostsContext, posts => posts.removeSameQuestion);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   const [isAnswerBoxOpen, setIsAnswerBoxOpen] = useState(false);
   
@@ -81,6 +83,20 @@ export function Comments({ post, comments }: PostProps) {
     updateSameQuestion(post.id);
     localStorage.setItem(`hasSameQuestionForPost-${post.id}`, 'true');
     setHasSameQuestion(true);
+  }
+
+  // Para permitir copiar token ao clicar sobre ele
+  const copyContent = async () => {
+    try {
+      await navigator.clipboard.writeText("AQUI VAI O LINK PARA COMPARTILHAR!!!");
+      console.log('Content copied to clipboard');
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+    setLinkCopied(true);
+    setTimeout(() => {
+        setLinkCopied(false);
+    }, 2000);
   }
 
   function handleOpenAnswerBox() {
@@ -128,6 +144,15 @@ export function Comments({ post, comments }: PostProps) {
           <SecondaryButton onClick={handleHaveSameQuestion} variant={hasSameQuestion}>
             Tenho a mesma pergunta ({post.sameQuestion})
           </SecondaryButton>
+
+          <ShareButtonContainer>
+            <ShareButton onClick={copyContent}>
+              <ShareNetwork size={20} weight='bold' />
+            </ShareButton>
+            {linkCopied &&
+              <span className='tooltiptext'>Link copiado!</span>
+            }
+          </ShareButtonContainer>
         </div>
       </div>
 

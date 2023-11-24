@@ -58,6 +58,7 @@ export const PostContainer = styled.div`
   @media (max-width: 1024px) {
     .content .buttons {
       flex-direction: column-reverse;
+      align-items: flex-start;
 
       button {
         width: 100%;
@@ -120,5 +121,70 @@ export const CommentForm = styled.form`
   :focus-within footer {
     visibility: visible;
     max-height: none;
+  }
+`
+
+export const ShareButtonContainer = styled.div`
+  position: relative;
+  width: fit-content !important;
+
+  /* Tooltip text */
+  .tooltiptext {
+    width: 7.5rem;
+    visibility: visible;
+    background-color: ${props => props.theme['surface-variant']};
+    color: ${props => props.theme['on-surface']};
+    font: 400 0.875rem/1rem 'Segoe_UI';
+    text-align: center;
+    padding: 7px 15px;
+    border-radius: 4px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 8%;
+    left: 120%;
+
+    /* Fade in tooltip */
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+
+  /* Tooltip arrow */
+  .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 30%;
+    right: 100%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent ${props => props.theme['surface-variant']} transparent transparent;
+  }
+`
+
+export const ShareButton = styled.button`
+  width: fit-content !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 100%;
+  border: 0;
+  background: transparent;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  svg {
+    color: ${props => props.theme['primary']};
+  }
+
+  :hover {
+    background-color: ${props => props.theme['surface-variant']};
+    filter: brightness(1.15);
+  }
+
+  :active {
+    filter: brightness(1.3);
   }
 `
