@@ -34,7 +34,16 @@ export function SubjectPreview({ discipline }: SubjectProps) {  return (
                 {discipline.lastQuestions.map(post => {
                   return (
                     <tr key={post.id}>
-                      <td><p>{post.title}</p></td>
+                      {/* <td><p>{post.title}</p></td> */}
+                      <td><p>{
+                        post.title == 'P1 - 2022 - OAC - II (prof. Gisele) questão 1' ? 'Comparação entre computadores' :
+                        post.title == 'P1 - 2022 - OAC - II (prof. Gisele) questão 2' ? 'Pipeline' :
+                        post.title == 'P1 - 2022 - OAC - II (prof. Gisele) questão 3' ? 'Máquina superescalar' :
+                        post.title == 'P1 - 2022 - OAC - II (prof. Gisele) questão 4 (Parte 1 de 2)' ? 'Linguagem de montagem / RISC (Parte 1 de 2)' :
+                        post.title == 'P1 - 2022 - OAC - II (prof. Gisele) questão 4 (Parte 2 de 2)' ? 'Linguagem de montagem / RISC (Parte 2 de 2)' :
+                        post.title == 'P1 - 2022 - OAC - II (prof. Gisele) questão 5' ? 'Arquitetura RISC' :
+                        post.title
+                      }</p></td>
                       <td><span>{formatDistanceToNow(new Date(post.publishedAt), {locale: ptBr})}</span></td>
                     </tr>
                   )

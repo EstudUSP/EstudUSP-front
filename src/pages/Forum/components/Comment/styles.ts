@@ -60,7 +60,7 @@ export const CommentBox = styled.div<CommentBoxProps>`
     }
   
     p {
-      color: ${props => props.theme['gray-300']};
+      color: ${props => props.theme['inverse-surface']};
     }
 
     a {
@@ -131,6 +131,7 @@ export const CommentBox = styled.div<CommentBoxProps>`
     display: block;
     font-size: 0.875rem;
     line-height: 1.6;
+    color: ${props => props.theme['inverse-surface']};
   }
 
   .authorAndTime time {
