@@ -25,7 +25,6 @@ interface CreatableSelectProps {
 
 const CreatableSelectComponent = ({ isInForm = false, selectProfessor }: CreatableSelectProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [value, setValue] = useState<Option | null>();
   const theme = useTheme();
   const { subjectId } = useParams();
 
@@ -43,18 +42,22 @@ const CreatableSelectComponent = ({ isInForm = false, selectProfessor }: Creatab
     const newOption = createOption(inputValue);
     createTeacher({ name: inputValue });
     setOptions((prev) => [...prev, newOption]);
-    setValue(newOption);
     selectProfessor && selectProfessor('professor', inputValue);
   };
 
   const handleSelect = (option: SingleValue<Option>) => {
     if (!option) return;
 
-    setValue(option);
     selectProfessor && selectProfessor('professor', option.value);
 
     if (!isInForm) fetchPosts(subjectId || '', { professor: option.value });
   }
+
+  const handleClear = () => {
+    if (!isInForm) {
+      fetchPosts(subjectId || '');
+    }
+  };
 
   useEffect(() => {
     fetchTeachers('')
@@ -132,17 +135,22 @@ const CreatableSelectComponent = ({ isInForm = false, selectProfessor }: Creatab
 
   return (
     <CreatableSelect
-      // isClearable
+      isClearable
       isDisabled={isLoading}
       isLoading={isLoading}
-      onChange={handleSelect}
+      // onChange={handleSelect}
+      onChange={(selectedOption, actionMeta) => {
+        if (actionMeta.action === 'clear') {
+          handleClear();
+        } else {
+          handleSelect(selectedOption);
+        }
+      }}
       onCreateOption={handleCreate}
       options={options}
-      value={value}
       styles={colourStyles}
       placeholder={isInForm ? 'Professor(a) (opcional)' : 'Filtre por professor(a)'}
       formatCreateLabel={(inputValue) => `Criar professor(a) "${inputValue}"`}
-      // TODO: Pegar a info de quando é selecionado (pra filtrar no fórum e devolver nome no form)
     />
   );
 };
