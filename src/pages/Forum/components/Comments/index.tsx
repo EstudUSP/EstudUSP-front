@@ -112,11 +112,11 @@ export function Comments({ post, comments }: PostProps) {
       <div className='content'>
         {checkTextForLineBreak(post.content)}
 
-        <div className='postAttachmentsWrapper'>
-          {post.attachments && 
-            <AttachmentsList attachments={post.attachments} />
-          }
-        </div>
+        {post.attachments.length > 0 && 
+          <div className='postAttachmentsWrapper'>
+              <AttachmentsList attachments={post.attachments} />
+          </div>
+        }
 
         <div className='buttons'>
           {!isAnswerBoxOpen &&
@@ -161,8 +161,6 @@ export function Comments({ post, comments }: PostProps) {
           </footer>
         </CommentForm>
       }
-
-      <div className='separator'></div>
 
       <div className='commentList'>
         <>
