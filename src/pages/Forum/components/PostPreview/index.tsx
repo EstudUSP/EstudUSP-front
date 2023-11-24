@@ -73,12 +73,14 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard }: PostP
     setLikeState(localStorage.getItem(`likeStateForPost-${post.id}`) ?? '');
   }, [post.id]);
 
+  console.log(post)
+
   return (
     <PostPreviewContainer variant={getLikeState()}>
       <div className='header'>
         <div className='tag-container'>
-          {post.teacher &&
-            <TeacherTag>{post.teacher}</TeacherTag>
+          {post.professor &&
+            <TeacherTag>{post.professor}</TeacherTag>
           }
           <PostPreviewContent>
             <Avatar 

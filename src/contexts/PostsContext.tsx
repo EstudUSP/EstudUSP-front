@@ -14,7 +14,7 @@ export interface Post {
   upvotes: number;
   anonymous: boolean;
   repliesQuantity: number;
-  teacher: string;
+  professor: string;
 }
 
 export interface CreatePostInput {
