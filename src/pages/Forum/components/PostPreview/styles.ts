@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export interface PostPreviewContainerProps {
   variant: 'like' | '';
+  isSelected: boolean;
 }
 
 export const PostPreviewContainer = styled.article<PostPreviewContainerProps>`
@@ -9,6 +10,7 @@ export const PostPreviewContainer = styled.article<PostPreviewContainerProps>`
   border-radius: 8px;
   padding: 2rem;
   position: relative;
+  border: ${props => props.isSelected ? '1px solid' + props.theme['primary'] : ''};
   
   .header {
     display: flex;
@@ -155,3 +157,14 @@ export const TeacherTag = styled.div`
   font-weight: bold;
   margin-bottom: 1rem;
 `
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  svg {
+    color: ${props => props.theme['primary']};
+    cursor: pointer;
+  }
+`;

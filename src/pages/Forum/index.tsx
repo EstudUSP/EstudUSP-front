@@ -21,6 +21,7 @@ export function Forum() {
   const { clearUploads } = useFiles();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [clipboardContent, setClipboardContent] = useState('');
 
   const posts = useContextSelector(PostsContext, (context) => context.posts);
 
@@ -79,6 +80,8 @@ export function Forum() {
                 isCardOpen={post.id === openedPostId} 
                 onOpenCard={() => setOpenedPostId(post.id)}
                 onCloseCard={() => setOpenedPostId(-1)}
+                setClipboardContent={() => setClipboardContent(post.id + '')}
+                isCopied={post.id + '' === clipboardContent}
               />
             )
           })}

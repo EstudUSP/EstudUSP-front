@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBr from 'date-fns/locale/pt-BR'
 
-import { PostPreviewContainer, PostPreviewContent, TeacherTag } from './styles';
+import { PostPreviewContainer, PostPreviewContent, TeacherTag, TitleWrapper } from './styles';
 import { Avatar } from '../../../../components/Avatar';
 import { Comments } from '../Comments';
 import { CommentsContext } from '../../../../contexts/CommentsContext';
 import { Subtitle } from '../../../../styles/global';
 import { useContextSelector } from 'use-context-selector';
-import { ThumbsUp } from 'phosphor-react';
+import { ThumbsUp, Link, Check } from 'phosphor-react';
 import { Post as PostType, PostsContext } from '../../../../contexts/PostsContext';
 import { TerciaryButton } from '../../../../components/TerciaryButton/styles';
 
@@ -23,9 +23,11 @@ interface PostProps {
   isCardOpen: boolean;
   onOpenCard: () => void;
   onCloseCard: () => void;
+  setClipboardContent: () => void;
+  isCopied: boolean;
 }
 
-export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard }: PostProps) {
+export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard, ...props }: PostProps) {
 
   const comments = useContextSelector(CommentsContext, (context) => context.comments);
   const [likeState, setLikeState] = useState('');
@@ -69,14 +71,20 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard }: PostP
     return '';
   }
 
+  function copyToClipboard() {
+    const url = window.location.href.split('#')[0];
+    navigator.clipboard.writeText(url + '#' + post.id);
+    props.setClipboardContent();
+  }
+
   useEffect(() => {
     setLikeState(localStorage.getItem(`likeStateForPost-${post.id}`) ?? '');
   }, [post.id]);
 
-  console.log(post)
+  const isSelected = window.location.hash?.split('#')[1] === post.id + '';
 
   return (
-    <PostPreviewContainer variant={getLikeState()}>
+    <PostPreviewContainer isSelected={isSelected} id={post.id + ''} variant={getLikeState()}>
       <div className='header'>
         <div className='tag-container'>
           {post.professor &&
@@ -87,7 +95,13 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard }: PostP
               content={post.anonymous ? 'Anônimo' : post.username}
             />
             <div className='authorInfo'>
-              <h6>{post.title}</h6>
+              <TitleWrapper>
+                <h6>{post.title}</h6>
+                { props.isCopied ?
+                  <Check size={18} weight='bold' /> :
+                  <Link size={18} weight='bold' onClick={copyToClipboard} />
+                }
+              </TitleWrapper>
               <Subtitle>{post.anonymous ? 'Anônimo' : post.username}</Subtitle>
               {!isCardOpen &&
                 <TerciaryButton className='downarrow' onClick={handleOpenCard}>

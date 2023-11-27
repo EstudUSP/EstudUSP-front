@@ -15,7 +15,7 @@ export function SubjectPreview({ discipline }: SubjectProps) {  return (
       <Link to={`/forum/${discipline.id}`}>
         <SubjectPreviewContent>
           <div className="disciplineImg">
-            <img src={discipline.previewImg} alt="" />
+            <img loading="lazy" src={discipline.previewImg} alt="" />
           </div>
           <div className='disciplineInfo'>
             <h6>{discipline.title}</h6>
