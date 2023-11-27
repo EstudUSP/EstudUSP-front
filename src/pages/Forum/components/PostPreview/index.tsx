@@ -77,11 +77,15 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard, ...prop
     props.setClipboardContent();
   }
 
+  const isSelected = window.location.hash?.split('#')[1] === post.id + '';
+
   useEffect(() => {
     setLikeState(localStorage.getItem(`likeStateForPost-${post.id}`) ?? '');
-  }, [post.id]);
 
-  const isSelected = window.location.hash?.split('#')[1] === post.id + '';
+    if (isSelected) {
+      location.href = '#' + post.id;
+    }
+  }, [post.id]);
 
   return (
     <PostPreviewContainer isSelected={isSelected} id={post.id + ''} variant={getLikeState()}>
