@@ -166,7 +166,7 @@ export function Comments({ post, comments }: PostProps) {
         <>
           <h6>Respostas</h6>
           {post.repliesQuantity > 0 && (
-              <p style={{marginTop: '1rem'}}>{post.repliesQuantity} resposta{post.repliesQuantity ? 's' : ''}</p>
+              <p style={{marginTop: '1rem'}}>{post.repliesQuantity} resposta{post.repliesQuantity != 1 ? 's' : ''}</p>
             )
           }
           {post.repliesQuantity === 0 && (

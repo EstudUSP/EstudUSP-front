@@ -107,9 +107,9 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard, ...prop
               <TitleWrapper>
                 <h6>{post.title}</h6>
                 <ShareButtonContainer>
-                  <ShareButton onClick={copyToClipboard}>
+                  <ShareButton onClick={copyToClipboard} linkCopied={linkCopied}>
                   { linkCopied ?
-                    <Check size={18} weight='bold' /> :
+                    <Check size={20} weight='bold' /> :
                     <Link size={20} weight='bold' />
                   }
                   </ShareButton>
@@ -122,7 +122,7 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard, ...prop
               <Subtitle>{post.anonymous ? 'Anônimo' : post.username}</Subtitle>
               {!isCardOpen &&
                 <TerciaryButton className='downarrow' onClick={handleOpenCard}>
-                  <p>{post.repliesQuantity} resposta{post.repliesQuantity!= 1 ? 's' : ''}</p>
+                  <p>{post.repliesQuantity} resposta{post.repliesQuantity != 1 ? 's' : ''}</p>
                   <div></div>
                 </TerciaryButton>
               }

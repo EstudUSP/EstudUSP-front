@@ -176,7 +176,8 @@ export const ShareButtonContainer = styled.div`
 
   /* Tooltip text */
   .tooltiptext {
-    width: 7.5rem;
+    width: fit-content;
+    white-space: nowrap;
     visibility: visible;
     background-color: ${props => props.theme['surface-variant']};
     color: ${props => props.theme['on-surface']};
@@ -209,7 +210,11 @@ export const ShareButtonContainer = styled.div`
   }
 `
 
-export const ShareButton = styled.button`
+interface ShareButtonProps {
+  linkCopied: boolean;
+}
+
+export const ShareButton = styled.button<ShareButtonProps>`
   width: fit-content !important;
   display: flex;
   align-items: center;
@@ -220,25 +225,35 @@ export const ShareButton = styled.button`
   background: transparent;
   transition: all 0.2s;
   cursor: pointer;
+  ${props => props.linkCopied && `
+    cursor: default;
+  `}
 
   svg {
     color: ${props => props.theme['primary']};
+    ${props => props.linkCopied && `
+      cursor: default;
+    `}
   }
 
   ~ .on-hover {
     visibility: hidden;
   }
 
-  :hover:not(:active) {
-    background-color: ${props => props.theme['surface-variant']};
-    filter: brightness(1.15);
+  @media (min-width: 768px) {
+    ${props => !props.linkCopied && `
+      :hover:not(:active) {
+        background-color: ${props.theme['surface-variant']};
+        filter: brightness(1.15);
 
-    ~ .on-hover {
-      visibility: visible;
+        ~ .on-hover {
+          visibility: visible;
+        }
+      }
+    `}
+
+    :active {
+      filter: brightness(1.3);
     }
-  }
-
-  :active {
-    filter: brightness(1.3);
   }
 `
