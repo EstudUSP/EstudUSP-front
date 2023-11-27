@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBr from 'date-fns/locale/pt-BR'
 
-import { PostPreviewContainer, PostPreviewContent, TeacherTag, TitleWrapper } from './styles';
+import { PostPreviewContainer, PostPreviewContent, ShareButton, ShareButtonContainer, TeacherTag, TitleWrapper } from './styles';
 import { Avatar } from '../../../../components/Avatar';
 import { Comments } from '../Comments';
 import { CommentsContext } from '../../../../contexts/CommentsContext';
@@ -31,6 +31,7 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard, ...prop
 
   const comments = useContextSelector(CommentsContext, (context) => context.comments);
   const [likeState, setLikeState] = useState('');
+  const [linkCopied, setLinkCopied] = useState(false);
   const updateUpvote = useContextSelector(PostsContext, posts => posts.updateUpvote);
   const updateDownvote = useContextSelector(PostsContext, posts => posts.updateDownvote);
 
@@ -75,6 +76,10 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard, ...prop
     const url = window.location.href.split('#')[0];
     navigator.clipboard.writeText(url + '#' + post.id);
     props.setClipboardContent();
+    setLinkCopied(true);
+    setTimeout(() => {
+        setLinkCopied(false);
+    }, 2000);
   }
 
   const isSelected = window.location.hash?.split('#')[1] === post.id + '';
@@ -101,10 +106,18 @@ export function PostPreview({ post, isCardOpen, onOpenCard, onCloseCard, ...prop
             <div className='authorInfo'>
               <TitleWrapper>
                 <h6>{post.title}</h6>
-                { props.isCopied ?
-                  <Check size={18} weight='bold' /> :
-                  <Link size={18} weight='bold' onClick={copyToClipboard} />
-                }
+                <ShareButtonContainer>
+                  <ShareButton onClick={copyToClipboard}>
+                  { linkCopied ?
+                    <Check size={18} weight='bold' /> :
+                    <Link size={20} weight='bold' />
+                  }
+                  </ShareButton>
+                  {linkCopied ?
+                    <span className='tooltiptext'>Link copiado!</span> :
+                    <span className='tooltiptext on-hover'>Copiar link</span>
+                  }
+                </ShareButtonContainer>
               </TitleWrapper>
               <Subtitle>{post.anonymous ? 'Anônimo' : post.username}</Subtitle>
               {!isCardOpen &&
