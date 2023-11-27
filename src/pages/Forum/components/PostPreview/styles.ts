@@ -229,7 +229,7 @@ export const ShareButton = styled.button`
     visibility: hidden;
   }
 
-  :hover {
+  :hover:not(:active) {
     background-color: ${props => props.theme['surface-variant']};
     filter: brightness(1.15);
 
